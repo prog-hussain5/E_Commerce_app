@@ -1,0 +1,30 @@
+{
+  "appTitle": "متجر إلكتروني",
+  "home": "الرئيسية",
+  "products": "المنتجات",
+  "cart": "سلة التسوق",
+  "profile": "الملف الشخصي",
+  "login": "تسجيل الدخول",
+  "register": "إنشاء حساب",
+  "addToCart": "إضافة إلى السلة",
+  "productDetails": "تفاصيل المنتج",
+  "description": "الوصف",
+  "categories": "الفئات",
+  "settings": "الإعدادات",
+  "darkMode": "الوضع المظلم",
+  "language": "اللغة",
+  "arabic": "العربية",
+  "english": "الإنجليزية",
+  "productNotFound": "المنتج غير موجود",
+  "price": "السعر",
+  "reviews": "تقييمات",
+  "review": "تقييم",
+  "addedToCart": "تمت إضافة {product} إلى السلة",
+  "@addedToCart": {
+    "placeholders": {
+      "product": {
+        "type": "String"
+      }
+    }
+  }
+}

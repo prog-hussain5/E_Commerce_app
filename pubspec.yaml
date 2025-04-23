@@ -1,0 +1,49 @@
+name: test_trae_ai
+description: "تطبيق متجر إلكتروني متكامل باستخدام Flutter."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # إضافة مكتبة التدويل
+    sdk: flutter
+  intl: ^0.19.0  # تحديث الإصدار من 0.18.0 إلى 0.19.0
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.1 # لإدارة حالة التطبيق
+  shared_preferences: ^2.2.2 # لتخزين البيانات المحلية مثل الوضع المظلم
+  http: ^1.1.2 # للتعامل مع طلبات HTTP
+  flutter_svg: ^2.0.9 # لعرض صور SVG
+  cached_network_image: ^3.3.0 # لتخزين الصور مؤقتًا
+  carousel_slider: ^4.2.1 # لعرض الصور المتحركة
+  flutter_rating_bar: ^4.0.1 # لعرض تقييمات المنتجات
+  badges: ^3.1.2 # لعرض شارات على الأيقونات (مثل عدد العناصر في سلة التسوق)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true # إضافة هذا السطر لتوليد ملفات الترجمة
+  
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-Light.ttf
+          weight: 300

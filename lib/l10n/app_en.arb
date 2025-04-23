@@ -1,0 +1,30 @@
+{
+  "appTitle": "E-commerce Store",
+  "home": "Home",
+  "products": "Products",
+  "cart": "Cart",
+  "profile": "Profile",
+  "login": "Login",
+  "register": "Register",
+  "addToCart": "Add to Cart",
+  "productDetails": "Product Details",
+  "description": "Description",
+  "categories": "Categories",
+  "settings": "Settings",
+  "darkMode": "Dark Mode",
+  "language": "Language",
+  "arabic": "Arabic",
+  "english": "English",
+  "productNotFound": "Product not found",
+  "price": "Price",
+  "reviews": "Reviews",
+  "review": "Review",
+  "addedToCart": "{product} added to cart",
+  "@addedToCart": {
+    "placeholders": {
+      "product": {
+        "type": "String"
+      }
+    }
+  }
+}
