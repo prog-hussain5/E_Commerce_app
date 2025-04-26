@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../providers/theme_provider.dart';
 import '../providers/auth_provider.dart';
@@ -96,7 +97,36 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: _screens[_selectedIndex],
+      body: _selectedIndex == 0 
+          ? Column(
+              children: [
+                // شريط البحث
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: AppLocalizations.of(context)?.searchProducts ?? 'البحث عن منتجات...',
+                      prefixIcon: const Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    onChanged: (value) {
+                      // تنفيذ البحث عن المنتجات
+                      if (value.isNotEmpty) {
+                        Provider.of<ProductProvider>(context, listen: false).searchProducts(value);
+                      } else {
+                        Provider.of<ProductProvider>(context, listen: false).resetSearch();
+                      }
+                    },
+                  ),
+                ),
+                // محتوى الشاشة الرئيسية
+                Expanded(child: _screens[_selectedIndex]),
+              ],
+            )
+          : _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {

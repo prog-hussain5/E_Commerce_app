@@ -26,12 +26,38 @@ class Product {
 
 class ProductProvider extends ChangeNotifier {
   List<Product> _products = [];
+  List<Product> _filteredProducts = [];
   List<Product> _favorites = [];
   List<String> _categories = [];
+  bool _isSearchActive = false;
 
-  List<Product> get products => _products;
+  List<Product> get products => _isSearchActive ? _filteredProducts : _products;
   List<Product> get favorites => _favorites;
   List<String> get categories => _categories;
+  
+  // البحث عن المنتجات
+  void searchProducts(String query) {
+    if (query.isEmpty) {
+      resetSearch();
+      return;
+    }
+    
+    _isSearchActive = true;
+    _filteredProducts = _products.where((product) {
+      return product.name.toLowerCase().contains(query.toLowerCase()) ||
+             product.description.toLowerCase().contains(query.toLowerCase()) ||
+             product.categories.any((category) => category.toLowerCase().contains(query.toLowerCase()));
+    }).toList();
+    
+    notifyListeners();
+  }
+  
+  // إعادة تعيين البحث
+  void resetSearch() {
+    _isSearchActive = false;
+    _filteredProducts = [];
+    notifyListeners();
+  }
 
   ProductProvider() {
     _loadProducts();
@@ -142,13 +168,5 @@ class ProductProvider extends ChangeNotifier {
     }
   }
 
-  // البحث عن منتجات
-  List<Product> searchProducts(String query) {
-    if (query.isEmpty) {
-      return _products;
-    }
-    return _products.where((product) =>
-        product.name.toLowerCase().contains(query.toLowerCase()) ||
-        product.description.toLowerCase().contains(query.toLowerCase())).toList();
-  }
+  // تم إزالة دالة البحث المكررة هنا
 }

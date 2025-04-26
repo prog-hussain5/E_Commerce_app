@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
+import '../../providers/language_provider.dart';
 import '../auth/login_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -122,17 +124,7 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          _buildSettingItem(
-            context,
-            icon: Icons.language,
-            title: 'اللغة',
-            onTap: () {
-              // تنفيذ إجراء تغيير اللغة
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('هذه الميزة غير متاحة حاليًا')),
-              );
-            },
-          ),
+          _buildLanguageSelector(context),
           
           const SizedBox(height: 32),
           
@@ -172,6 +164,32 @@ class ProfileScreen extends StatelessWidget {
         title: Text(title),
         trailing: const Icon(Icons.arrow_forward_ios, size: 16),
         onTap: onTap,
+      ),
+    );
+  }
+  
+  Widget _buildLanguageSelector(BuildContext context) {
+    final languageProvider = Provider.of<LanguageProvider>(context);
+    final isArabic = languageProvider.isArabic;
+    
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListTile(
+        leading: const Icon(Icons.language),
+        title: Text(AppLocalizations.of(context)?.language ?? 'اللغة'),
+        subtitle: Text(isArabic ? 'العربية' : 'English'),
+        trailing: Switch(
+          value: isArabic,
+          onChanged: (value) {
+            // تبديل اللغة بين العربية والإنجليزية
+            languageProvider.setLocale(
+              value ? const Locale('ar') : const Locale('en')
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(value ? 'تم تغيير اللغة إلى العربية' : 'Language changed to English')),
+            );
+          },
+        ),
       ),
     );
   }

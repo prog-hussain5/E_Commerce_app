@@ -26,5 +26,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "searchProducts": "البحث عن منتجات..."
 }
